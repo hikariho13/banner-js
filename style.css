@@ -1,0 +1,109 @@
+@charset "utf-8";
+
+/* 1. 滿版輪播容器 */
+.banner-slider {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh; 
+    overflow: hidden;
+    background-color: #000;
+    
+    /* 設定滑鼠指標為抓取樣式，提示可以拖曳 */
+    cursor: grab;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.banner-slider:active {
+    cursor: grabbing;
+}
+
+/* 2. 單張 Slide 設定 */
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+}
+
+/* 遮罩效果 */
+.slide::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.35); 
+}
+
+/* 文字內容 */
+.slide-content {
+    position: relative;
+    z-index: 2;
+    padding: 0 20px;
+    max-width: 800px;
+    pointer-events: none; /* 防止拖曳時選到文字 */
+}
+
+.slide-content h1 {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+}
+
+.slide-content p {
+    font-size: 1.25rem;
+}
+
+/* 顯示當前這張 Slide */
+.slide.active {
+    opacity: 1;
+}
+
+/* 3. 下方指示點 (Dots) */
+.dots-container {
+    position: absolute;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    display: flex;
+    gap: 12px;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dot.active {
+    background: #fff;
+    width: 32px;
+    border-radius: 10px;
+}
+
+/* 4. RWD 手機版調整 */
+@media (max-width: 768px) {
+    .slide-content h1 { font-size: 1.8rem; }
+    .slide-content p { font-size: 0.95rem; }
+    .dots-container { bottom: 15px; }
+}
+
