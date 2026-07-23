@@ -1,5 +1,9 @@
 @charset "utf-8";
-
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 /* 1. 滿版輪播容器 */
 .banner-slider {
     position: relative;
